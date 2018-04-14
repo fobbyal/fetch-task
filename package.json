@@ -1,5 +1,5 @@
 {
-  "name": "@integec/grid-tools",
+  "name": "@integec/fetch-task",
   "version": "0.0.0",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
