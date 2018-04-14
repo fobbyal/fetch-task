@@ -1,6 +1,6 @@
 {
   "name": "fetch-task",
-  "version": "1.0.0",
+  "version": 0.0.0",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
