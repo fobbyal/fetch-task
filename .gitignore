@@ -1,0 +1,8 @@
+/node_modules
+/npm-debug.log
+/dist
+stats.json
+docker-app/node_modules
+/coverage
+yarn-error.log
+
