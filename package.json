@@ -1,14 +1,12 @@
 {
-  "name": "fetch-task",
-  "version": 0.0.0",
+  "name": "@integec/grid-tools",
+  "version": "0.0.0",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
     "build": "webpack --env.dev",
     "build:watch": "webpack --watch --env.dev",
     "build:prod": "webpack -p --env.prod",
-    "storybook": "start-storybook -h 0.0.0.0 -p 6006",
-    "build-storybook": "build-storybook",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
@@ -21,10 +19,7 @@
     "type": "git",
     "url": "git@github.com:fobbyal/fetch-task.git"
   },
-  "keywords": [
-    "fetch",
-    "task"
-  ],
+  "keywords": ["fetch", "task", "data.task"],
   "author": "Alex Liang <aliang@integconsulting.com>",
   "license": "ISC",
   "devDependencies": {
@@ -32,6 +27,8 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-ramda": "^1.6.1",
     "babel-preset-env": "^1.6.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14"
   },
@@ -43,5 +40,8 @@
   },
   "peerDependencies": {
     "ramda": "^0.25.0"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["npx prettier --write", "git add"]
   }
 }
