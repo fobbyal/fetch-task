@@ -71,7 +71,9 @@ const processHttpResp = resp =>
     )
     .chain(resp => (errorStatusList.includes(resp.restfulStatus) ? rejected(resp) : Task.of(resp)))
 
-const fetchAndHandleError = R.compose(processHttpResp, futurizedFetch)
+const compose = (f, g) => (...args) => f(g(...args))
+
+const fetchAndHandleError = compose(processHttpResp, futurizedFetch)
 
 const authHeader = ({ jwt }, { ignoreAuth } = {}) =>
   jwt && !ignoreAuth ? { Authorization: `JWT ${jwt}` } : {}

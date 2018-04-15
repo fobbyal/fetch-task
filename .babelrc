@@ -3,7 +3,6 @@
     ["env",{"modules":false }],
   ],
   "plugins": [
-    "ramda",
     "transform-object-rest-spread",
   ],
 	"env": {

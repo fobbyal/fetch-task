@@ -25,7 +25,6 @@
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
-    "babel-plugin-ramda": "^1.6.1",
     "babel-preset-env": "^1.6.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
