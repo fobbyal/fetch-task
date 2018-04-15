@@ -1,6 +1,6 @@
 {
   "name": "@integec/fetch-task",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
