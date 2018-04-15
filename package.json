@@ -1,6 +1,6 @@
 {
   "name": "@integec/fetch-task",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
@@ -38,9 +38,7 @@
     "futurize": "^1.2.0",
     "whatwg-fetch": "^2.0.4"
   },
-  "peerDependencies": {
-    "ramda": "^0.25.0"
-  },
+  "peerDependencies": {},
   "lint-staged": {
     "*.{js,json,css,md}": ["npx prettier --write", "git add"]
   }
