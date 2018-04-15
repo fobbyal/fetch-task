@@ -1,8 +1,9 @@
-import R from 'ramda'
 import { futurizeP } from 'futurize'
 import Task, { rejected } from 'data.task'
 import { fromNullable, Just, Nothing } from 'data.maybe'
 import 'whatwg-fetch'
+
+const isNil = val => val == null
 
 const future = futurizeP(Task)
 const futurizedFetch = future(fetch)
@@ -16,7 +17,7 @@ const httpErrorTask = resp => {
   console.log('raw Error', resp, 'content-type is ', resp.headers.get('Content-Type'))
   /*eslint-enable*/
   if (
-    R.isNil(resp.headers.get('Content-Type')) ||
+    isNil(resp.headers.get('Content-Type')) ||
     resp.headers.get('Content-Type').includes('text')
   ) {
     //TODO: add error code
@@ -54,7 +55,7 @@ const processHttpResp = resp =>
     .chain(res => (res.status === 200 ? Task.of(res) : httpErrorTask(res)))
     .chain(
       res =>
-        R.isNil(res.headers.get('Content-Type')) || res.headers.get('Content-Type').includes('text')
+        isNil(res.headers.get('Content-Type')) || res.headers.get('Content-Type').includes('text')
           ? new Task((reject, success) =>
               res
                 .text()

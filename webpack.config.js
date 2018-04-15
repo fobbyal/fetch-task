@@ -8,7 +8,6 @@ module.exports = env => ({
     library: '@integec/fetch-task',
     libraryTarget: 'umd',
   },
-  externals: ['ramda'],
   module: {
     rules: [{ test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' }],
   },
