@@ -75,7 +75,7 @@ const compose = (f, g) => (...args) => f(g(...args))
 
 const fetchAndHandleError = compose(processHttpResp, futurizedFetch)
 
-const authHeader = ({ jwt }, { ignoreAuth } = {}) =>
+const authHeader = ({ jwt, ignoreAuth }) =>
   jwt && !ignoreAuth ? { Authorization: `JWT ${jwt}` } : {}
 
 export const post = (targetInfo, target, options) => payload =>
@@ -83,7 +83,7 @@ export const post = (targetInfo, target, options) => payload =>
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      ...authHeader(targetInfo, options),
+      ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
     },
     body: fromNullable(payload)
       .map(JSON.stringify)
