@@ -94,7 +94,7 @@ export const deleteTask = (targetInfo, target) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'DELETE',
     headers: {
-      'Content-Type': 'bapplication/json',
+      'Content-Type': 'application/json',
       ...authHeader(targetInfo),
     },
     body: fromNullable(payload)
@@ -106,4 +106,18 @@ export const deleteTask = (targetInfo, target) => payload =>
 export const get = (targetInfo, target) =>
   fetchAndHandleError(url(targetInfo, target), {
     headers: authHeader(targetInfo),
+  })
+
+/** adding universal fetch task creation **/
+export const createFetchTask = ({ method = 'GET', ignoreAuth, headers = {} }) => (
+  targetInfo,
+  target
+) => body =>
+  fetchAndHandleError(url(targetInfo, target), {
+    method,
+    headers: {
+      ...headers,
+      ...authHeader({ ...targetInfo, ignoreAuth }),
+    },
+    body,
   })
