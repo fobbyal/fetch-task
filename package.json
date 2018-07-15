@@ -1,6 +1,6 @@
 {
   "name": "@integec/fetch-task",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
@@ -13,7 +13,8 @@
     "pretty": "prettier --debug-check \"src/**/*.js\" ",
     "pretty:write": "prettier --write \"src/**/*.js\"",
     "precommit": "lint-staged",
-    "lint:fix-file": "eslint --fix"
+    "lint:fix-file": "eslint --fix",
+    "prepublishOnly": "yarn build:prod"
   },
   "repository": {
     "type": "git",
