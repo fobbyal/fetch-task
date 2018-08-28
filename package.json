@@ -1,12 +1,13 @@
 {
   "name": "@integec/fetch-task",
-  "version": "0.0.6",
+  "version": "1.0.6",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
-    "build": "webpack --env.dev",
-    "build:watch": "webpack --watch --env.dev",
-    "build:prod": "webpack -p --env.prod",
+    "build": "babel src/index.js --out-file dist/fetch-task.js --source-maps inline",
+    "build:watch": "babel src/index.js --out-file dist/fetch-task.js --watch --source-maps inline",
+    "build:prod":
+      "cross-env NODE_ENV=production babel src/index.js --out-file dist/fetch-task.js --source-maps",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
@@ -14,7 +15,7 @@
     "pretty:write": "prettier --write \"src/**/*.js\"",
     "precommit": "lint-staged",
     "lint:fix-file": "eslint --fix",
-    "prepublishOnly": "yarn build:prod"
+    "prepublishOnly": "npm run build:prod"
   },
   "repository": {
     "type": "git",
@@ -24,9 +25,11 @@
   "author": "Alex Liang <aliang@integconsulting.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
     "webpack": "^4.5.0",
