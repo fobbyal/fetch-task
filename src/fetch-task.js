@@ -125,7 +125,8 @@ export const createFetchTask = ({ method = 'GET', ignoreAuth, headers = {} }) =>
 export const mockNetwork = (payload, ident) =>
   new Task((reject, resolve) =>
     setTimeout(() => {
-      console.log(`mocking network request for ${ident}...`)
+      console.log(`mocking network request for ${ident} `)
+      console.log('payloads', payload)
       resolve(payload)
     }, 650)
   )

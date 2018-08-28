@@ -4,10 +4,10 @@
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
-    "build": "babel src/index.js --out-file dist/fetch-task.js --source-maps inline",
-    "build:watch": "babel src/index.js --out-file dist/fetch-task.js --watch --source-maps inline",
+    "build": "rimraf dist/* && babel src --out-dir dist --source-maps inline",
+    "build:watch": "rimraf dist/* && babel src --out-dir dist --watch --source-maps inline",
     "build:prod":
-      "cross-env NODE_ENV=production babel src/index.js --out-file dist/fetch-task.js --source-maps",
+      " rimraf dist/* && cross-env NODE_ENV=production babel src --out-dir dist --source-maps",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cover": "jest --coverage",
@@ -27,13 +27,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cross-env": "^5.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "data.maybe": "^1.2.2",
