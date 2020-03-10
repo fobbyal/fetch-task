@@ -62,18 +62,24 @@ const processHttpResp = resp =>
                 .then(success)
                 .catch(reject)
             )
-          : new Task((reject, success) =>
-              res
-                .json()
-                .then(success)
-                .catch(reject)
-            )
+          : res.headers.get('Content-Type') != null &&
+            res.headers.get('Content-Type').includes('json')
+            ? new Task((reject, success) =>
+                res
+                  .json()
+                  .then(success)
+                  .catch(reject)
+              )
+            : Task.of({ restfulStatus: 'SUCCESS', rawResp: res })
     )
     .chain(resp => (errorStatusList.includes(resp.restfulStatus) ? rejected(resp) : Task.of(resp)))
 
 const compose = (f, g) => (...args) => f(g(...args))
 
-const fetchAndHandleError = compose(processHttpResp, futurizedFetch)
+const fetchAndHandleError = compose(
+  processHttpResp,
+  futurizedFetch
+)
 
 const authHeader = ({ jwt, ignoreAuth }) =>
   jwt && !ignoreAuth ? { Authorization: `JWT ${jwt}` } : {}
