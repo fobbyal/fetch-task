@@ -1,6 +1,6 @@
 {
   "name": "@integec/fetch-task",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Fetch Task Wrapper",
   "main": "dist/fetch-task.js",
   "scripts": {
@@ -29,19 +29,19 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "cross-env": "^5.2.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.4",
-    "rimraf": "^2.6.2"
+    "babel-preset-env": "^1.7.0",
+    "cross-env": "^7.0.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.13",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "data.maybe": "^1.2.2",
-    "data.task": "^3.1.1",
+    "data.maybe": "^1.2.3",
+    "data.task": "^3.1.2",
     "futurize": "^1.2.0",
-    "whatwg-fetch": "^2.0.4"
+    "whatwg-fetch": "^3.4.0"
   },
   "peerDependencies": {},
   "lint-staged": {

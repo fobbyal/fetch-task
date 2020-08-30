@@ -87,6 +87,7 @@ const authHeader = ({ jwt, ignoreAuth }) =>
 export const post = (targetInfo, target, options) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
@@ -99,6 +100,7 @@ export const post = (targetInfo, target, options) => payload =>
 export const deleteTask = (targetInfo, target) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'DELETE',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...authHeader(targetInfo),
@@ -111,6 +113,7 @@ export const deleteTask = (targetInfo, target) => payload =>
 /** need to put security info here **/
 export const get = (targetInfo, target) =>
   fetchAndHandleError(url(targetInfo, target), {
+    credentials: 'include',
     headers: authHeader(targetInfo),
   })
 
@@ -120,6 +123,7 @@ export const createFetchTask = ({ method = 'GET', ignoreAuth, headers = {} }) =>
   target
 ) => body =>
   fetchAndHandleError(url(targetInfo, target), {
+    credentials: 'include',
     method,
     headers: {
       ...headers,
