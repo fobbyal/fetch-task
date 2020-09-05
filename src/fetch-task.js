@@ -7,7 +7,6 @@ const isNil = val => val == null
 
 const future = futurizeP(Task)
 const futurizedFetch = future(fetch)
-const fetchTaskCredentials = window ? window.fetchTaskCredentials : undefined
 
 const url = ({ baseUrl }, target) => `${baseUrl}/${target}`
 
@@ -88,7 +87,7 @@ const authHeader = ({ jwt, ignoreAuth }) =>
 export const post = (targetInfo, target, options) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'POST',
-    credentials: fetchTaskCredentials,
+    credentials: targetInfo.fetchCredentials == null ? undefined : targetInfo.fetchCredentials,
     headers: {
       'Content-Type': 'application/json',
       ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
@@ -101,7 +100,7 @@ export const post = (targetInfo, target, options) => payload =>
 export const deleteTask = (targetInfo, target) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'DELETE',
-    credentials: fetchTaskCredentials,
+    credentials: targetInfo.fetchCredentials == null ? undefined : targetInfo.fetchCredentials,
     headers: {
       'Content-Type': 'application/json',
       ...authHeader(targetInfo),
@@ -114,7 +113,7 @@ export const deleteTask = (targetInfo, target) => payload =>
 /** need to put security info here **/
 export const get = (targetInfo, target) =>
   fetchAndHandleError(url(targetInfo, target), {
-    credentials: fetchTaskCredentials,
+    credentials: targetInfo.fetchCredentials == null ? undefined : targetInfo.fetchCredentials,
     headers: authHeader(targetInfo),
   })
 
@@ -124,7 +123,7 @@ export const createFetchTask = ({ method = 'GET', ignoreAuth, headers = {} }) =>
   target
 ) => body =>
   fetchAndHandleError(url(targetInfo, target), {
-    credentials: fetchTaskCredentials,
+    credentials: targetInfo.fetchCredentials == null ? undefined : targetInfo.fetchCredentials,
     method,
     headers: {
       ...headers,
