@@ -88,13 +88,30 @@ export const post = (targetInfo, target, options) => payload =>
   fetchAndHandleError(url(targetInfo, target), {
     method: 'POST',
     credentials: targetInfo.fetchCredentials == null ? undefined : targetInfo.fetchCredentials,
-    headers: {
-      'Content-Type': 'application/json',
-      ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
-    },
-    body: fromNullable(payload)
-      .map(JSON.stringify)
-      .getOrElse(undefined),
+    headers:
+      payload instanceof FormData
+        ? {
+            ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
+          }
+        : {
+            'Content-Type': options
+              ? options.contentType || 'application/json'
+              : 'application/json',
+            ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
+          },
+    body:
+      payload instanceof FormData
+        ? payload
+        : fromNullable(payload)
+            .map(JSON.stringify)
+            .getOrElse(undefined),
+    // headers: {
+    //   'Content-Type': 'application/json',
+    //   ...authHeader(options ? { ...targetInfo, ...options } : targetInfo),
+    // },
+    // body: fromNullable(payload)
+    //   .map(JSON.stringify)
+    //   .getOrElse(undefined),
   })
 
 export const deleteTask = (targetInfo, target) => payload =>
